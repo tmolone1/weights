@@ -1,7 +1,19 @@
 library(shiny)
-
+library(shinyjs)
 fluidPage(
   
+  tags$head(
+    tags$style(
+      HTML(".shiny-notification {
+             background-color:#FF5733;
+             position:fixed;
+             top: calc(25%);
+             left: calc(50%);
+             }
+             ")
+    ),
+  ),
+  useShinyjs(),
   # App title ----
   titlePanel("Weightlifting App"),
   

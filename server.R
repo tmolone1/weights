@@ -72,5 +72,6 @@ function(input, output, session) {
   observeEvent(input$start, {active(TRUE)})
   observeEvent(input$stop, {active(FALSE)})
   observeEvent(input$reset, {timer(0); active(FALSE)})
-  
+  observeEvent(input$start, {delay(100000, showNotification(paste("NEXT SET!!! GET AFTER IT!!"), duration = 30))})
+  observeEvent(input$ex1_add1, {delay(100000, showNotification(paste("NEXT SET!!! GET AFTER IT!!"), duration = 30))})
 }
