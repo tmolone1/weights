@@ -11,16 +11,26 @@ fluidPage(
     # Sidebar panel for inputs ----
     sidebarPanel(
       
-      # Input: Selector for choosing dataset ----
-      selectInput(inputId = "program",
-                  label = "Choose a program:",
-                  choices = c("A","B","C","D","E"),
-                  selected = "E"),
+      # Input: Numeric entry for number of exercises ----
+      numericInput(inputId = "n_ex",
+                   label = "number of exercises",
+                   value = 3),
       
-      # Input: Numeric entry for number of obs to view ----
-      numericInput(inputId = "day",
-                   label = "workout day",
-                   value = 4)
+      # Input: Selector for choosing dataset ----
+      numericInput(inputId = "reps",
+                   label = "repetitions per set:",
+                   value = 10),
+      
+      # Input: Numeric entry for RPE ----
+      numericInput(inputId = "rpe",
+                   label = "RPE",
+                   value = 8),
+      
+      # Input: Numeric entry for RPE ----
+      numericInput(inputId = "sets",
+                   label = "sets to perform:",
+                   value = 3)
+      
     ),
     
     # Main panel for displaying outputs ----

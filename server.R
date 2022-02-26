@@ -3,13 +3,14 @@ function(input, output, session) {
   
   # Return the requested dataset ----
   datasetInput <- reactive({
-    switch(input$program,
-           "E" = e_program)
+    exercises %>% mutate(selectorder = priority*runif(nrow(exercises))) %>% arrange(selectorder) %>% head(input$n_ex)
   })
+  
+  
   
   # Show the first "n" observations ----
   output$view <- renderTable({
-    datasetInput() %>% filter(Workout==paste0("E",input$day))
+    datasetInput() %>% mutate(reps=rep(input$reps,input$n_ex), rpe=rep(input$rpe, input$n_ex), sets=rep(input$sets, input$n_ex)) %>% mutate(try_weight=floor(vol_at_rpe8to9*(rpe/8.5)/reps/sets)) %>% select(exercise, reps, sets, try_weight)
   })
   
   # counter buttons

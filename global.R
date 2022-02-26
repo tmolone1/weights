@@ -1,3 +1,3 @@
 library(tidyverse)
 library(lubridate)
-e_program<-tibble(read_csv("ProgramE.csv"))
+exercises<-tibble(read_csv("exercises.csv"))
