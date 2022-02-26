@@ -6,7 +6,9 @@ function(input, output, session) {
     exercises %>% mutate(selectorder = priority*runif(nrow(exercises))) %>% arrange(selectorder) %>% head(input$n_ex)
   })
   
-  
+  output$selection_input<- renderUI(selectInput(inputId = "exercise",
+              label = "exercise being performed:",
+              choices = 1:input$n_ex))
   
   # Show the first "n" observations ----
   output$view <- renderTable({

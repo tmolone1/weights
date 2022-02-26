@@ -47,9 +47,11 @@ fluidPage(
     
     # Main panel for displaying outputs ----
     mainPanel(
-      
+      # Output: HTML table with requested number of observations ----
+      tableOutput("view"),
+      br(),
       # Output: Verbatim text for data summary ----
-      tags$b("Simple counter using reactiveValues() - An example"),
+      tags$b("Counters for tracking exercise sets"),
       br(),
       actionButton("ex1_add1", "ex + 1"),
       actionButton("ex1_sub1", "ex - 1"),
@@ -59,14 +61,10 @@ fluidPage(
       textOutput("count2"),
       textOutput("count3"),
       textOutput("count4"),
-      # Output: HTML table with requested number of observations ----
-      tableOutput("view"),
       br(),
       
       #
-      selectInput(inputId = "exercise",
-                  label = "exercise being performed:",
-                  choices = c(1,2,3,4)),
+      uiOutput("selection_input"),
       
       hr(),
       actionButton('start','Start'),
