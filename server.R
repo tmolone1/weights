@@ -20,7 +20,10 @@ function(input, output, session) {
 
   
   observeEvent(input$reset, {
-    counter$countervalue <- 0                     # if the reset button is clicked, set the counter value to zero
+    counter$countervalue <- 0
+    counter$count2 <- 0
+    counter$count3 <- 0
+    counter$count4 <- 0 # if the reset button is clicked, set the counter value to zero
   })
   output$count1 <- renderText({
     paste("Counter Value 1 is ", counter$countervalue)
@@ -60,6 +63,7 @@ function(input, output, session) {
       }
     })
   })
+
   
   # observers for actionbuttons
   observeEvent(input$ex1_add1, {active(TRUE); timer(0)})
