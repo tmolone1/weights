@@ -1,0 +1,13 @@
+name: weights
+title: weights
+username:
+account: wyseo
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5757039
+bundleId: 5982632
+url: https://wyseo.shinyapps.io/weights/
+when: 1654536702.54196
+lastSyncTime: 1654536702.54197
+asMultiple: FALSE
+asStatic: FALSE
