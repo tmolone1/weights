@@ -3,7 +3,13 @@ function(input, output, session) {
   
   # Return the requested dataset ----
   datasetInput <- reactive({
+    if (input$bodyweight == FALSE) {
     exercises %>% mutate(selectorder = priority*runif(nrow(exercises))) %>% arrange(selectorder) %>% head(input$n_ex)
+    }
+    else {
+      rows<-nrow(exercises %>% filter(bodyweight=='y'))
+      exercises %>% filter(bodyweight=='y') %>% mutate(selectorder = priority*runif(rows)) %>% arrange(selectorder) %>% head(input$n_ex)
+    }
   })
   
   output$selection_input<- renderUI(selectInput(inputId = "exercise",
@@ -61,6 +67,8 @@ function(input, output, session) {
       {
         timer(round(timer()+update_interval,2))
       }
+      
+      
     })
   })
 
@@ -81,3 +89,4 @@ function(input, output, session) {
   observeEvent(input$start, {delay(100000, showNotification(paste("NEXT SET!!! GET AFTER IT!!"), duration = 30))})
   observeEvent(input$ex1_add1, {delay(100000, showNotification(paste("NEXT SET!!! GET AFTER IT!!"), duration = 30))})
 }
+
