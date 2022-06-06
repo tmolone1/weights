@@ -41,7 +41,13 @@ fluidPage(
       # Input: Numeric entry for RPE ----
       numericInput(inputId = "sets",
                    label = "sets to perform:",
-                   value = 3)
+                   value = 3),
+      
+      # Input: bodyweight only
+      radioButtons(inputId = "bodyweight",
+                    label = "workout type",
+                   choices = c("no equipment", "equipment", "mixed"),
+                   selected= "mixed") 
       
     ),
     
