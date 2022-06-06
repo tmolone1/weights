@@ -9,7 +9,7 @@ function(input, output, session) {
     if (input$bodyweight == 'equipment') {
       rows<-nrow(exercises %>% filter(bodyweight=='n'))
       exercises %>% filter(bodyweight=='n') %>% mutate(selectorder = priority*runif(rows)) %>% arrange(selectorder) %>% head(input$n_ex)
-    }
+      }
     else {
       rows<-nrow(exercises %>% filter(bodyweight=='y'))
       exercises %>% filter(bodyweight=='y') %>% mutate(selectorder = priority*runif(rows)) %>% arrange(selectorder) %>% head(input$n_ex)
