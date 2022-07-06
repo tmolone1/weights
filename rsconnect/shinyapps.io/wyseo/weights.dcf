@@ -5,16 +5,9 @@ account: wyseo
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5757039
-<<<<<<< HEAD
-bundleId: 5982690
+bundleId: 6075537
 url: https://wyseo.shinyapps.io/weights/
-when: 1654538134.21885
-lastSyncTime: 1654538134.21886
-=======
-bundleId: 5982632
-url: https://wyseo.shinyapps.io/weights/
-when: 1654536702.54196
-lastSyncTime: 1654536702.54197
->>>>>>> 246dd23e964f741c2c57b597e835b91db1f68bc0
+when: 1657128582.25939
+lastSyncTime: 1657128582.2594
 asMultiple: FALSE
 asStatic: FALSE
