@@ -4,7 +4,7 @@ Concentration Curls,600,3,n
 Pushups,30,1,y
 Ab Crunches,60,2,y
 Side lateral raise,300,3,n
-One arm one leg dumbell row,600,1,n
+One arm one leg dumbell row,600,1.5,n
 EZ bar skullcrusher,600,3,n
 Flat dumbbell bench press,800,1,n
 Dumbbell curl to press,600,1,n
@@ -19,7 +19,6 @@ V ups,30,2,y
 Front Lateral Raise,450,3,n
 Air Squats,30,1,y
 Glute Bridges,30,1,y
-One arm one leg dumbbell row,600,2,n
 Toe Raises,36,2,n
 Lunges,30,2,y
 Kettleball Swing,300,3,n
@@ -46,8 +45,15 @@ Weighted Lunges,400,2,n
 Assisted Dips,-3000,2,n
 Straight Leg Dead Lift,500,3,n
 Bent Over Dumbbell Reverse Fly,400,2.5,n
-Tricep Pushdown, 1300,2.5,n
+Tricep Pushdown, 1300,2,n
 Goblet Squat,1300,3,n
 Chest Fly,1800,3,n
 Standing Reverse X Fly, 350,3,n
+Offset Reverse Lunge,600,2,n
+Inverted Row,-300,3,n
+Reverse Grip Lat Pulldown,600,2,n
+Alternating Hammer Curls,600,2,n
+Pistol Squats,18,1,y
+Skater Squats,24,1,y
+Face Pull,900,2,n
 
