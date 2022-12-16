@@ -4,12 +4,14 @@ library(googledrive)
 library(googlesheets4)
 source("global.R")
 
-options({
-  # whenever there is one account token found, use the cached token
-  gargle_oauth_email = TRUE
-  # specify auth tokens should be stored in a hidden directory ".secrets"
-  gargle_oauth_cache = "~/.secrets"
-})
+options(
+  gargle_oauth_email = TRUE,
+  gargle_oauth_cache = "./.secrets"
+)
+
+googledrive::drive_auth() 
+gs4_auth(token = drive_token())
+
 ui <- {dashboardPage(
   dashboardHeader(    title = "Weightlifting App"
                   ),
@@ -56,10 +58,17 @@ server <- function(input, output, session) {
   })
   
   output$sel_table_view <- renderDataTable({
-    datasetInput() %>% mutate(reps=rep(input$reps,input$n_ex), rpe=rep(input$rpe, input$n_ex), sets=rep(input$sets, input$n_ex)) %>% mutate(try_weight=floor(vol_at_rpe8to9*(rpe/8.5)/reps/sets)) %>% select(exercise, reps, sets, try_weight)
-  })
+    datasetInput() %>% 
+      mutate(reps=rep(input$reps,input$n_ex), rpe=rep(input$rpe, input$n_ex), sets=rep(input$sets, input$n_ex)) %>% 
+      mutate(try_weight=floor(vol_at_rpe8to9*(rpe/8.5)/reps/sets)) %>% select(exercise, reps, sets, try_weight)
+  }, options = list(dom='t'))
+  
+  history<-reactive(googlesheets4::read_sheet(drive_get("~/Fitness/Weights/history")$id) %>% tibble())
+  
+  output$history_view <- DT::renderDataTable(history(), options = list(scrollX = TRUE))
   
   
+  # workout
   output$tab1UI <- renderUI({
     box(width = NULL, status = "primary",
         sidebarLayout(
@@ -88,24 +97,33 @@ server <- function(input, output, session) {
             radioButtons(inputId = "bodyweight",
                          label = "workout type",
                          choices = c("no equipment", "equipment", "mixed"),
-                         selected= "mixed")
+                         selected= "mixed"),
+            
+            actionButton('log','Log This Workout')
           
           ),
           mainPanel(
-            h4(strong("Table Preview")),
+            h4(strong("Today's Workout")),
             dataTableOutput(outputId = "sel_table_view"),
             hr(),
+            h5('Timer'),
             actionButton('start','Start'),
             actionButton('stop','Stop'),
             actionButton('reset','Reset'),
+            textOutput('timeleft'),
             hr(),
-            textOutput('timeleft')
+            
           )
         )
     )
   })
   
-  #update table
+  #training plan
+  output$tab2UI <- renderUI({
+    
+  })
+  
+  #calendar
   output$tab3UI <- renderUI({
     fluidPage(
       fluidRow(
@@ -130,30 +148,19 @@ server <- function(input, output, session) {
     )
   })
   
-  
-  #create table
+  #History
   output$tab4UI <- renderUI({
     box(width = NULL, status = "primary",
         textInput(inputId = "table_name", label = "Table name"),
-        numericInput(inputId = "ncols", label = "Number of columns", 1, min = 1),
-        uiOutput(outputId = "cols"),
-        actionButton(inputId = "create_table", label = "Create table", class = "btn-info", style = "")
+        actionButton(inputId = "create_table", label = "Create table", class = "btn-info", style = ""),
+        dataTableOutput(outputId = "history_view")
+        
     )
   })
   
-  output$cols <- renderUI({
-    req(input$ncols >= 1)
-    cols <- vector("list", input$ncols)
-    for (i in seq_len(input$ncols)) {
-      cols[[i]] <- box(
-        title = paste("Column", i), width = 6, solidHeader = TRUE, status = "primary",
-        textInput(inputId = paste0("colName", i), label = "Column name"),
-        selectInput(inputId = paste0("colType", i), label = "Column type", 
-                    choices = c("NUMERIC", "VARCHAR(255)","BOOLEAN","DATE")
-        )
-      )
-    }
-    cols
+  # Profile
+  output$tab5UI <- renderUI({
+
   })
   
   
