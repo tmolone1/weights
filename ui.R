@@ -47,7 +47,7 @@ fluidPage(
       radioButtons(inputId = "bodyweight",
                     label = "workout type",
                    choices = c("no equipment", "equipment", "mixed"),
-                   selected= "mixed") 
+                   selected= "equipment") 
       
     ),
     
